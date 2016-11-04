@@ -1,4 +1,4 @@
-require('JPViewController,UIColor,UIView');
+require('JPViewController,UIColor,UIView,NSString,UIAlertView');
 defineClass('JPTableViewController', {
             tableView_didSelectRowAtIndexPath: function(tableView, indexPath) {
             var datasourse = self.dataSourse().toJS()
@@ -13,6 +13,12 @@ defineClass('JPTableViewController', {
             var ctrl = JPViewController.alloc().initWithContent(content);
             ctrl.view().setBackgroundColor(UIColor.redColor());
             self.navigationController().pushViewController_animated(ctrl, YES);
+            }else{
+
+            var message = NSString.stringWithFormat("self.dataSourse.count %ld  indexPath.row %ld ", dataSourse.length, index);
+            var alert = UIAlertView.alloc().initWithTitle_message_delegate_cancelButtonTitle_otherButtonTitles(message, "", null, "OK", null, null);
+            alert.show();
+
             }
             },
             });
